@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ToysRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +38,14 @@ class Toys
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $cat = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cartid')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Cart $cart = null;
+    #[ORM\OneToMany(mappedBy: 'ctoyid', targetEntity: Cart::class)]
+    private Collection $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -129,14 +136,32 @@ class Toys
         return $this;
     }
 
-    public function getCart(): ?Cart
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
     {
-        return $this->cart;
+        return $this->carts;
     }
 
-    public function setCart(?Cart $cart): static
+    public function addCart(Cart $cart): static
     {
-        $this->cart = $cart;
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setCtoyid($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): static
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getCtoyid() === $this) {
+                $cart->setCtoyid(null);
+            }
+        }
 
         return $this;
     }

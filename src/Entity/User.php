@@ -24,19 +24,13 @@ class User
     #[ORM\Column(length: 100)]
     private ?string $password = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'role')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?self $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: self::class)]
-    private Collection $role;
 
     #[ORM\OneToMany(mappedBy: 'cartItem', targetEntity: Cart::class)]
     private Collection $carts;
 
     public function __construct()
     {
-        $this->role = new ArrayCollection();
         $this->carts = new ArrayCollection();
     }
 
@@ -81,47 +75,6 @@ class User
         return $this;
     }
 
-    public function getUser(): ?self
-    {
-        return $this->user;
-    }
-
-    public function setUser(?self $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getRole(): Collection
-    {
-        return $this->role;
-    }
-
-    public function addRole(self $role): static
-    {
-        if (!$this->role->contains($role)) {
-            $this->role->add($role);
-            $role->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRole(self $role): static
-    {
-        if ($this->role->removeElement($role)) {
-            // set the owning side to null (unless already changed)
-            if ($role->getUser() === $this) {
-                $role->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Cart>

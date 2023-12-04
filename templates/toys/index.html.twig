@@ -1,0 +1,65 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Toys index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Toys Manager</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('app_toys_new') }}"> 
+                    Create New Toy 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>name</th>
+                            <th>description</th>
+                            <th>Price</th>
+                            <th>Created</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    {% for toy in toys %}
+                    <tr>
+                       <td>{{ toy.id }}</td>
+                        <td>{{ toy.tname }}</td>
+                        <td>{{ toy.tdesc }}</td>
+                        <td>{{ toy.price }}</td>
+                        <td>{{ toy.created ? toy.created|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <form method="post" action="{{ path('app_toys_delete', {'id': toy.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('app_toys_show', {'id': toy.id}) }}">
+                                    Show
+                                </a>
+                                
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_toys_edit', {'id': toy.id}) }}">
+                                    Edit
+                                </a>
+ 
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ toy.id) }}">
+                                <button class="btn btn-outline-danger">Delete</button>
+
+
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_toys_index', {'id': toy.id}) }}">
+                                    add to cart
+                                </a>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

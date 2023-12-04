@@ -15,16 +15,21 @@ class Cart
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: Toys::class)]
-    private Collection $cartid;
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $cartItem = null;
 
+    #[ORM\ManyToOne(inversedBy: 'carts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Toys $ctoyid = null;
+
+    #[ORM\Column]
+    private ?int $cquantity = null;
+
     public function __construct()
     {
-        $this->cartid = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -32,35 +37,6 @@ class Cart
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Toys>
-     */
-    public function getCartid(): Collection
-    {
-        return $this->cartid;
-    }
-
-    public function addCartid(Toys $cartid): static
-    {
-        if (!$this->cartid->contains($cartid)) {
-            $this->cartid->add($cartid);
-            $cartid->setCart($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCartid(Toys $cartid): static
-    {
-        if ($this->cartid->removeElement($cartid)) {
-            // set the owning side to null (unless already changed)
-            if ($cartid->getCart() === $this) {
-                $cartid->setCart(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getCartItem(): ?User
     {
@@ -73,4 +49,30 @@ class Cart
 
         return $this;
     }
+
+    public function getCtoyid(): ?Toys
+    {
+        return $this->ctoyid;
+    }
+
+    public function setCtoyid(?Toys $ctoyid): static
+    {
+        $this->ctoyid = $ctoyid;
+
+        return $this;
+    }
+
+    public function getCquantity(): ?int
+    {
+        return $this->cquantity;
+    }
+
+    public function setCquantity(int $cquantity): static
+    {
+        $this->cquantity = $cquantity;
+
+        return $this;
+    }
+
+ 
 }
