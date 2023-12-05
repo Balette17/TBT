@@ -2,28 +2,77 @@
 
 {% block title %}Product{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 7px 7px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-outline-info,
+        .btn-outline-warning {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .btn-outline-info:hover,
+        .btn-outline-warning:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="container">
-            <h2 class="text-center mt-5 mb-3">Show Product</h2>
-            <div class="card">
-                <div class="card-header">
-                    <a class="btn btn-outline-info float-right" href="{{ path('app_toys_index') }}"> 
-                        View All Products
-                    </a>
-                    <a class="btn btn-outline-warning ms-2" href="{{ path('app_toys_edit', {'id': toy.id})  }}"> 
-                        Edit
-                    </a>
-                </div>
-                <div class="card-body">
-                    <b class="text-muted">Name:</b>
-                    <p>{{ toy.tname }}</p>
-                    <b class="text-muted">Description:</b>
-                    <p>{{ toy.tdesc }}</p>
-                    <b class="text-muted">Price:</b>
-                    <p>{{ toy.price }}</p>
-                    <img src="{{asset('uploads/'~toy.image)}}" width="500" height="500"> <br>
-                </div>
+        <h2 class="text-center mt-5 mb-3">Show Product</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_toys_index') }}"> 
+                    View All Products
+                </a>
+                <a class="btn btn-outline-warning ms-2" href="{{ path('app_toys_edit', {'id': toy.id}) }}"> 
+                    Edit
+                </a>
             </div>
+            <div class="card-body">
+                <b class="text-muted">Name:</b>
+                <p>{{ toy.tname }}</p>
+                <b class="text-muted">Description:</b>
+                <p>{{ toy.tdesc }}</p>
+                <b class="text-muted">Price:</b>
+                <p>{{ toy.price }}</p>
+                <img src="{{ asset('uploads/'~toy.image) }}" width="500" height="500" alt="Product Image"> <br>
+            </div>
+        </div>
     </div>
-    
 {% endblock %}
