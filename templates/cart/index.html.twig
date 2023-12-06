@@ -26,11 +26,9 @@
                         <tr>
                             <td>{{ cart.id }}</td>
                             <td>{{ cart.cartItem.username }}</td>
-                            
                             <td>{{ cart.cquantity }}</td>
                             <td>
                                 <a href="{{ path('app_cart_show', {'id': cart.id}) }}" class="btn btn-primary">Show</a>
-                                <a href="{{ path('app_cart_edit', {'id': cart.id}) }}" class="btn btn-secondary">Edit</a>
                                 <form action="{{ path('app_cart_delete', {'id': cart.id}) }}" method="post" style="display: inline;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
