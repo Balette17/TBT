@@ -71,11 +71,16 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        try {
             $entityManager->remove($user);
             $entityManager->flush();
+    
+            $this->addFlash('success', 'User deleted successfully.');
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'An error occurred while deleting the user.');
+            // Log the exception or handle it based on your application's needs
         }
-
+    
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }
