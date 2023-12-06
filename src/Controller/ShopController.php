@@ -9,7 +9,6 @@ use App\Repository\ToysRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -52,10 +51,22 @@ class ShopController extends AbstractController
         }
 
 
-        return new RedirectResponse($this->generateUrl('app_cart_index'));
+        return new Response('ok');
         // return $this->render('shop/test.html.twig', [
         //     're' => $re[0]
         // ]);
     }
+
+  
+    #[Route('/toy/{id}', name: 'show_detail_toy', methods: ['GET'])]
+    public function showDetailToy(Toys $toy): Response
+    {
+        return $this->render('shop/toy_details.html.twig', [
+            'toy' => $toy,
+        ]);
+    }
+    
+
+    
     
 }
