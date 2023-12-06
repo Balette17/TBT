@@ -1,35 +1,46 @@
+{# templates/cart/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Cart index{% endblock %}
+{% block title %}Your Shopping Cart{% endblock %}
 
 {% block body %}
-    <h1>Cart index</h1>
+    <div class="container mt-4">
+        <h1>Your Shopping Cart</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Cquantity</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cart in carts %}
-            <tr>
-                <td>{{ cart.id }}</td>
-                <td>{{ cart.cquantity }}</td>
-                <td>
-                    <a href="{{ path('app_cart_show', {'id': cart.id}) }}">show</a>
-                    <a href="{{ path('app_cart_edit', {'id': cart.id}) }}">edit</a>
-                </td>
-            </tr>
+        {% if carts is empty %}
+            <p>Your cart is empty.</p>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_cart_new') }}">Create new</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart in carts %}
+                        <tr>
+                            <td>{{ cart.id }}</td>
+                            <td>{{ cart.cartItem.username }}</td>
+                            
+                            <td>{{ cart.cquantity }}</td>
+                            <td>
+                                <a href="{{ path('app_cart_show', {'id': cart.id}) }}" class="btn btn-primary">Show</a>
+                                <a href="{{ path('app_cart_edit', {'id': cart.id}) }}" class="btn btn-secondary">Edit</a>
+                                <form action="{{ path('app_cart_delete', {'id': cart.id}) }}" method="post" style="display: inline;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
 {% endblock %}

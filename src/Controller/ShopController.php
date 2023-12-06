@@ -9,6 +9,7 @@ use App\Repository\ToysRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -51,7 +52,7 @@ class ShopController extends AbstractController
         }
 
 
-        return new Response('ok');
+        return new RedirectResponse($this->generateUrl('app_cart_index'));
         // return $this->render('shop/test.html.twig', [
         //     're' => $re[0]
         // ]);
