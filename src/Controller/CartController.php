@@ -58,7 +58,6 @@ class CartController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
             return $this->redirectToRoute('app_cart_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +70,7 @@ class CartController extends AbstractController
     #[Route('/{id}', name: 'app_cart_delete', methods: ['POST'])]
     public function delete(Request $request, Cart $cart, EntityManagerInterface $entityManager): Response
     {
+        
         if ($this->isCsrfTokenValid('delete'.$cart->getId(), $request->request->get('_token'))) {
             $entityManager->remove($cart);
             $entityManager->flush();

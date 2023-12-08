@@ -46,6 +46,11 @@ class Toys
         $this->carts = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getTName(); // Assuming getName() is a method in your Toys entity
+    }
+
 
     public function getId(): ?int
     {

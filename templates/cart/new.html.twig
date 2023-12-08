@@ -3,9 +3,9 @@
 {% block title %}New Cart{% endblock %}
 
 {% block body %}
-    <h1>Create new Cart</h1>
+    <h1>Create New Cart</h1>
 
-    {{ include('cart/_form.html.twig') }}
+    {{ include('cart/_form.html.twig', {'button_label': 'Create'}) }}
 
-    <a href="{{ path('app_cart_index') }}">back to list</a>
+    <a href="{{ path('app_cart_index') }}">Back to List</a>
 {% endblock %}
