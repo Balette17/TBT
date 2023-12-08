@@ -1,4 +1,4 @@
-{% extends 'admin.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}Toys index{% endblock %}
 
@@ -48,11 +48,7 @@
                                 <button class="btn btn-outline-danger">Delete</button>
 
 
-                                <a
-                                    class="btn btn-outline-success"
-                                    href="{{ path('app_toys_index', {'id': toy.id}) }}">
-                                    add to cart
-                                </a>
+                                
                             </form>
                         </td>
                     </tr>
@@ -63,3 +59,4 @@
     </div>
 
 {% endblock %}
+{% include 'footer.html.twig' %}

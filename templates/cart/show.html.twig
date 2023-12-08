@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}Cart Details{% endblock %}
 
@@ -23,3 +23,4 @@
 
     {{ include('cart/_delete_form.html.twig') }}
 {% endblock %}
+{% include 'footer.html.twig' %}

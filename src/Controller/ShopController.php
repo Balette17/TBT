@@ -33,7 +33,7 @@ class ShopController extends AbstractController
         
         if (count($re)==0) {
             $cart = new Cart();
-            $u = $ur->find(1);
+            $u = $ur->findOneBy(['username' => 'hntinh']);
             $cart->setCartItem($u);    
             $cart->setCtoyid($product);    
             $cart->setCquantity(1);        
@@ -56,5 +56,17 @@ class ShopController extends AbstractController
         //     're' => $re[0]
         // ]);
     }
+
+  
+    #[Route('/toy/{id}', name: 'show_detail_toy', methods: ['GET'])]
+    public function showDetailToy(Toys $toy): Response
+    {
+        return $this->render('shop/toy_details.html.twig', [
+            'toy' => $toy,
+        ]);
+    }
+    
+
+    
     
 }

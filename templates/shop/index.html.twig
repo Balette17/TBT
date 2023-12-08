@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Squadfree Bootstrap Template - Index</title>
+  <title>TBT SHOP</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,7 +32,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+{% include 'header.html.twig' %}
 <body>
 
  
@@ -48,12 +48,18 @@
 
         <div class="row portfolio-container" data-aos="fade-up">
  {% for toy in toys %}
+                
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <h3>{{ toy.tname }}</h2>
+                <p>Price: ${{ toy.price }}</p>
             <div class="portfolio-wrap">
               <img src="{{asset('uploads/'~toy.image)}}" class="img-fluid" alt="">
               <div class="portfolio-links">
                 <a href="{{ path('buy_product', {'id': toy.id})  }}"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                
+        
+        <a href="{{ path('show_detail_toy', {'id': toy.id}) }}" title="More Details"><i class="bx bx-link"></i></a>
+    </div>
               </div>
             </div>
           </div>
@@ -86,5 +92,5 @@
   <script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
-
 </html>
+{% include 'footer.html.twig' %}

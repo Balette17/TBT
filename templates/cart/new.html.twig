@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}New Cart{% endblock %}
 
@@ -9,3 +9,4 @@
 
     <a href="{{ path('app_cart_index') }}">Back to List</a>
 {% endblock %}
+{% include 'footer.html.twig' %}

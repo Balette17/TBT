@@ -1,54 +1,44 @@
-{% extends 'base.html.twig' %}
+{# templates/cart/index.html.twig #}
 
-{% block title %}Cart List{% endblock %}
+{% include 'header.html.twig' %}
+
+{% block title %}Your Shopping Cart{% endblock %}
 
 {% block body %}
-    <h1>Cart List</h1>
+    <div class="container mt-4">
+        <h1> Shopping Cart - {{ user.username }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Quantity</th>
-                <th>Cart Item</th>
-                <th>Toy ID</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cart in carts %}
-                <tr>
-                    <td>{{ cart.id }}</td>
-                    <td>{{ cart.cquantity }}</td>
-                    <td>{{ cart.cartItem.username }}</td> <!-- Assuming 'username' is a property of the User entity, adjust accordingly -->
-                    <td>{{ cart.ctoyid.Tname }}</td>       <!-- Assuming 'name' is a property of the Toys entity, adjust accordingly -->
-                    <td>
-                         <td>
-                            <form method="post" action="{{ path('app_cart_delete', {'id': cart.id}) }}" onsubmit="return confirm('Are you sure you want to delete this cart?');">
-                                <a
-                                    class="btn btn-outline-info"
-                                    href="{{ path('app_cart_show', {'id': cart.id}) }}">
-                                    Show
-                                </a>                             
- 
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
-                                <button class="btn btn-outline-danger">Delete</button>
-
-
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="5">No records found</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="card-header">
-                <a class="btn btn-outline-primary" href="{{ path('app_cart_new') }}"> 
-                    Create New Cart 
-                </a>
-            </div>
-
+        {% if carts is empty %}
+            <p>Your cart is empty.</p>
+        {% else %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart in carts %}
+                        <tr>
+                            <td>{{ cart.id }}</td>
+                            <td>{{ cart.ctoyid.tname }}</td>
+                            <td>{{ cart.cquantity }}</td>
+                            <td>
+                                
+                                <form action="{{ path('app_cart_delete', {'id': cart.id}) }}" method="post" style="display: inline;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
 {% endblock %}
+{% include 'footer.html.twig' %}
