@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}Category Index{% endblock %}
 
@@ -36,3 +36,4 @@
         <a href="{{ path('app_category_new') }}" class="btn btn-success">Create New Category</a>
     </div>
 {% endblock %}
+{% include 'footer.html.twig' %}

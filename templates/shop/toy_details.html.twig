@@ -1,6 +1,6 @@
 {# templates/shop/toy_details.html.twig #}
 
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}Toy Details{% endblock %}
 
@@ -15,3 +15,4 @@
         <a href="{{ path('shop_hp') }}" title="Back to Shop"><i class="bx bx-link"></i> Back to Shop</a>
     </div>
 {% endblock %}
+{% include 'footer.html.twig' %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block title %}User Index{% endblock %}
 
@@ -43,3 +43,4 @@
         <a href="{{ path('app_user_new') }}" class="btn btn-success">Create New User</a>
     </div>
 {% endblock %}
+{% include 'footer.html.twig' %}
