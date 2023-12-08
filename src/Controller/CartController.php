@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cart;
 use App\Form\CartType;
 use App\Repository\CartRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route('/', name: 'app_cart_index', methods: ['GET'])]
-    public function index(CartRepository $cartRepository): Response
+    public function index(CartRepository $cartRepository,UserRepository $ur): Response
     {
+        $u = $ur->findOneBy(['username' => 'hntinh']);
         return $this->render('cart/index.html.twig', [
             'carts' => $cartRepository->findAll(),
+            'user' =>$u
         ]);
     }
 

@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Your Shopping Cart</h1>
+        <h1> Shopping Cart - {{ user.username }}</h1>
 
         {% if carts is empty %}
             <p>Your cart is empty.</p>
@@ -15,7 +15,6 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">User</th>
                         <th scope="col">Product</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Actions</th>
@@ -25,10 +24,10 @@
                     {% for cart in carts %}
                         <tr>
                             <td>{{ cart.id }}</td>
-                            <td>{{ cart.cartItem.username }}</td>
+                            <td>{{ cart.ctoyid.tname }}</td>
                             <td>{{ cart.cquantity }}</td>
                             <td>
-                                <a href="{{ path('app_cart_show', {'id': cart.id}) }}" class="btn btn-primary">Show</a>
+                                
                                 <form action="{{ path('app_cart_delete', {'id': cart.id}) }}" method="post" style="display: inline;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
