@@ -33,7 +33,7 @@ class ShopController extends AbstractController
         
         if (count($re)==0) {
             $cart = new Cart();
-            $u = $ur->find(1);
+            $u = $ur->findOneBy(['username' => 'hntinh']);
             $cart->setCartItem($u);    
             $cart->setCtoyid($product);    
             $cart->setCquantity(1);        
