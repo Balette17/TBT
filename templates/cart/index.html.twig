@@ -2,51 +2,73 @@
 
 {% include 'header.html.twig' %}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9b2a6567c514b57609ccb26e084c75462d14f16f
 {% block body %}
     <div class="container mt-4">
         <h1> Shopping Cart - {{ user.username }}</h1>
-
+    
         {% if carts is empty %}
             <p>Your cart is empty.</p>
+            </div>
         {% else %}
-        <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+            {% for cart in carts %}
+            <body>
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
   <div class="container py-5 h-100" >
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12">
         <div class="card card-registration card-registration-2" style="border-radius: 15px;">
           <div class="card-body p-0">
             <div class="row g-0">
-              <div class="col-lg-8">
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cart in carts %}
-                        <tr>
-                            <td>{{ cart.id }}</td>
-                            <td>{{ cart.ctoyid.tname }}</td>
-                            <td>{{ cart.cquantity }}</td>
-                            <td>                              
+                             
+                  </div>
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <h class="col-md-2 col-lg-2 col-xl-2">Cart ID</h>
+                    <h class="col-md-3 col-lg-3 col-xl-3">Product Name</h>
+                    <h class="col-md-3 col-lg-3 col-xl-2 d-flex">Quantity</h>
+                    <h class="col-md-1 col-lg-1 col-xl-1 text-end"></h>
+                    <h class="col-md-1 col-lg-1 col-xl-1 text-end"></h>
+                    <h class="col-md-1 col-lg-1 col-xl-1 text-end"></h>
+                    <h class="col-md-1 col-lg-1 col-xl-1 text-end">Delete</h>
+                    </div>
+                  <hr class="my-4">
+
+                  <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                        <h>{{ cart.id }}</h>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      
+                      <h class="text-black mb-0">{{ cart.ctoyid.tname }}</h>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <h>{{ cart.cquantity }}</h>
+                    </div>
+
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+
                                 <form action="{{ path('app_cart_delete', {'id': cart.id}) }}" method="post" style="display: inline;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            </div>
-            </div>
+                    </div>
+                  </div>
+                  <hr class="my-4">
+                  </form>
+                  <div class="pt-5">
+                    <h class="mb-0"><a href="http://127.0.0.1:8000/shop" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h>
+                  </div>
+                </div>      
+                </div>
               </div>
             </div>
           </div>
@@ -54,8 +76,10 @@
       </div>
     </div>
   </div>
-</section>
+  </div>
+</section> 
+</div>    
+            {% endfor %}
         {% endif %}
-    </div>
 {% endblock %}
 {% include 'footer.html.twig' %}
