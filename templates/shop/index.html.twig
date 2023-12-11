@@ -1,34 +1,39 @@
-
 {% include 'header.html.twig' %}
-<body>
 
- 
-  <main id="main">
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
 
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-          <h2>Welcome to TBTSHOP</h2>
-          <p>Mo ta shop</p>
-        </div>
 
-        <div class="row portfolio-container" data-aos="fade-up">
- {% for toy in toys %}
-                
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <h3>{{ toy.tname }}</h2>
-                <p>Price: ${{ toy.price }}</p>
+<main id="main">
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+        <h2>Welcome to TBTSHOP</h2>
+        <p>Mo ta shop</p>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up">
+        {% for toy in toys %}
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <h3>{{ toy.tname }}</h3>
+            <p>Price: ${{ toy.price }}</p>
             <div class="portfolio-wrap">
               <img src="{{asset('uploads/'~toy.image)}}" class="img-fluid" alt="">
               <div class="portfolio-links">
-                <a href="{{ path('buy_product', {'id': toy.id})  }}"><i class="bx bx-plus"></i></a>
-                
-        
-        <a href="{{ path('show_detail_toy', {'id': toy.id}) }}" title="More Details"><i class="bx bx-link"></i></a>
-    </div>
+                  <a href="{{ path('buy_product', {'id': toy.id})  }}"><i class="bx bx-plus"></i></a>
+
+
+                  <a href="{{ path('show_detail_toy', {'id': toy.id}) }}" title="More Details"><i
+                      class="bx bx-link"></i></a>
               </div>
             </div>
-          </div>
-{% endfor %}
-          
+        </div>
+      
+      {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+
+      {% include 'footer.html.twig' %}
