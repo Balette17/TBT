@@ -34,6 +34,11 @@ class User
         $this->carts = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getUsername(); // Assuming getUsername() is a method in your User entity
+    }
+
     public function getId(): ?int
     {
         return $this->id;

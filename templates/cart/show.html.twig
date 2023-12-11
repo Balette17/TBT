@@ -1,26 +1,25 @@
 {% include 'header.html.twig' %}
 
-{% block title %}Cart{% endblock %}
+{% block title %}Cart Details{% endblock %}
 
 {% block body %}
-    <h1>Cart</h1>
+    <h1>Cart Details</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ cart.id }}</td>
             </tr>
             <tr>
-                <th>Cquantity</th>
+                <th>Quantity</th>
                 <td>{{ cart.cquantity }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_cart_index') }}">back to list</a>
-
-    <a href="{{ path('app_cart_edit', {'id': cart.id}) }}">edit</a>
+    <a href="{{ path('app_cart_index') }}">Back to List</a>
+    <a href="{{ path('app_cart_edit', {'id': cart.id}) }}">Edit</a>
 
     {{ include('cart/_delete_form.html.twig') }}
 {% endblock %}

@@ -4,10 +4,9 @@
 
 {% block body %}
     <h1>Edit Cart</h1>
-
     {{ include('cart/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_cart_index') }}">back to list</a>
+    <a href="{{ path('app_cart_index') }}">Back to List</a>
 
     {{ include('cart/_delete_form.html.twig') }}
 {% endblock %}
