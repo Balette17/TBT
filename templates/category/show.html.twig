@@ -1,13 +1,71 @@
-{% include 'header.html.twig' %}
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
 
-git 
-{% block title %}Category{% endblock %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 7px 7px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-outline-info,
+        .btn-outline-warning {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .btn-outline-danger {
+            width: 10px;
+            height: 5px;
+        }
+
+
+        .btn-outline-info:hover,
+        .btn-outline-warning:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1 class="display-4 text-center mb-4">Category Details</h1>
-
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Show Category</h2>
         <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_category_index') }}"> 
+                    View All Category
+                </a>
+                <a class="btn btn-outline-warning ms-2" href="{{ path('app_category_edit', {'id': category.id}) }}"> 
+                    Edit
+                </a>
+
+                <a class="btn btn-outline-danger" href="{{ path('app_category_delete', {'id': category.id}) }}"> 
+                    {{ include('category/_delete_form.html.twig') }} 
+                </a>
+
+            </div>
+              <div class="card">
             <div class="card-body">
                 <table class="table">
                     <tbody>
@@ -23,17 +81,6 @@ git
                 </table>
 
                 <div class="text-center">
-                    <a href="{{ path('app_category_index') }}" class="btn btn-secondary mt-3">Back to List</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning mt-3 ms-2">Edit</a>
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-4">
-
-            {{ include('category/_delete_form.html.twig') }}
         </div>
     </div>
 {% endblock %}
-{% include 'footer.html.twig' %}
