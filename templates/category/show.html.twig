@@ -1,15 +1,12 @@
+
 {% include 'header.html.twig' %}
-
-git 
-{% block title %}Category{% endblock %}
-
 {% block body %}
     <div class="container mt-4">
         <h1 class="display-4 text-center mb-4">Category Details</h1>
 
         <div class="card">
             <div class="card-body">
-                <table class="table">
+                <table class="table table-bordered">
                     <tbody>
                         <tr>
                             <th scope="row">Id</th>
@@ -22,17 +19,20 @@ git
                     </tbody>
                 </table>
 
-                <div class="text-center">
-                    <a href="{{ path('app_category_index') }}" class="btn btn-secondary mt-3">Back to List</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning mt-3 ms-2">Edit</a>
-                    
-                </div>
+                <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_category_index') }}"> 
+                    View All Products
+                </a>
+                <a class="btn btn-outline-warning ms-2" href="{{ path('app_category_edit', {'id': category.id}) }}"> 
+                    Edit
+                </a>
+
+                <a class="btn" href="{{ path('app_user_delete', {'id': category.id}) }}"> 
+                    {{ include('category/_delete_form.html.twig') }} 
+                </a>
+
             </div>
-        </div>
-
-        <div class="mt-4">
-
-            {{ include('category/_delete_form.html.twig') }}
+            </div>
         </div>
     </div>
 {% endblock %}

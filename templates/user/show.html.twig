@@ -30,11 +30,19 @@
                     </tbody>
                 </table>
 
-                <div class="text-center mt-3">
-                    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Back to List</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-warning ms-2">Edit</a>
-                    <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-danger ms-2">Delete</a>
-                </div>
+                <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_user_index') }}"> 
+                    View All Products
+                </a>
+                <a class="btn btn-outline-warning ms-2" href="{{ path('app_user_edit', {'id': user.id}) }}"> 
+                    Edit
+                </a>
+
+                <a class="btn" href="{{ path('app_user_delete', {'id': user.id}) }}"> 
+                    {{ include('user/_delete_form.html.twig') }} 
+                </a>
+
+            </div>
             </div>
         </div>
     </div>
