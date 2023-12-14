@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ToysRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,4 +79,18 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/category/{category}', name: 'app_toys_by_category', methods: ['GET'])]
+    public function showByCategory($category, ToysRepository $toysRepository): Response
+    {
+        
+        $toys = $toysRepository->findByCategory($category);
+    
+       
+        return $this->render('toys/show_by_category.html.twig', [
+            'category' => $category,
+            'toys' => $toys,
+        ]);
+    }
+    
 }

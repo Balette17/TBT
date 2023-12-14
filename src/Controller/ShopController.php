@@ -19,9 +19,9 @@ class ShopController extends AbstractController
     #[Route('/', name: 'shop_hp', methods: ['GET'])]
     public function index(ToysRepository $toysRepository): Response
     {
-        
+       $toys = $toysRepository->findBy([], ['created' => 'DESC'], 3);
             
-            $toys = $toysRepository->findBy([], ['created' => 'DESC'], 3);
+            //$toys = $toysRepository->findAll();
             return $this->render('shop/index.html.twig', [
                 'toys' => $toys,
         ]);
