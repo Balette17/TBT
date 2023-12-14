@@ -1,0 +1,76 @@
+{{ form_start(form,
+{ 'attr': {'class': 'mx-1 mx-md-4'} }
+) }}
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.tname) }}</label>
+        {{ form_widget(form.tname,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.tdesc) }}</label>
+        {{ form_widget(form.tdesc,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.price) }}</label>
+        {{ form_widget(form.price,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.tquan) }}</label>
+        {{ form_widget(form.tquan,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.created) }}</label>
+        {{ form_widget(form.created,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.ifile) }}</label>
+        {{ form_widget(form.ifile,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+
+    <div class="form-outline flex-fill mb-0">
+        <label class="form-label" for="form_tname">{{ form_label(form.cat) }}</label>
+        {{ form_widget(form.cat,
+        { 'attr':{'class':'colortext'} }) }}
+    </div>
+</div>
+
+{# Do the rest by yourself: pdesc, price, created, pquan, ifile. They will look like the yellow block code above #}
+
+<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    {{ form_widget(form.save) }}
+    <a class="btn btn-primary ms-2" role="button btn-primary ms-2" href="{{ path('app_toys_index') }}">Back to list</a>
+</div>
+
+
+{{ form_end(form) }}
