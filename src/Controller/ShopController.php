@@ -19,8 +19,11 @@ class ShopController extends AbstractController
     #[Route('/', name: 'shop_hp', methods: ['GET'])]
     public function index(ToysRepository $toysRepository): Response
     {
-        return $this->render('shop/index.html.twig', [
-            'toys' => $toysRepository->findAll(),
+        
+            
+            $toys = $toysRepository->findBy([], ['created' => 'DESC'], 3);
+            return $this->render('shop/index.html.twig', [
+                'toys' => $toys,
         ]);
     }
 
@@ -51,7 +54,7 @@ class ShopController extends AbstractController
         }
 
 
-        return new Response('ok');
+        return $this->redirectToRoute('app_cart_index');
         // return $this->render('shop/test.html.twig', [
         //     're' => $re[0]
         // ]);
@@ -65,6 +68,7 @@ class ShopController extends AbstractController
             'toy' => $toy,
         ]);
     }
+    
     
 
     
