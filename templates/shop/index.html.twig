@@ -14,7 +14,7 @@
 
       <div class="row portfolio-container" data-aos="fade-up">
         {% for toy in toys %}
-
+        
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <h3>{{ toy.tname }}</h3>
             <p>Price: ${{ toy.price }}</p>
@@ -22,8 +22,6 @@
               <img src="{{asset('uploads/'~toy.image)}}" class="img-fluid" alt="">
               <div class="portfolio-links">
                   <a href="{{ path('buy_product', {'id': toy.id})  }}"><i class="bx bx-plus"></i></a>
-
-
                   <a href="{{ path('show_detail_toy', {'id': toy.id}) }}" title="More Details"><i
                       class="bx bx-link"></i></a>
               </div>
@@ -35,5 +33,4 @@
     </div>
   </section>
 </main>
-
-      {% include 'footer.html.twig' %}
+    
