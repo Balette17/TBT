@@ -1,9 +1,9 @@
 {% include 'header.html.twig' %}
 
-
-
 {% block body %}
     <div class="container">
+    <br>
+    <br>
         <h2 class="text-center mt-5 mb-3">User Manager</h2>
         <div class="card">
             <div class="card-header">
@@ -19,7 +19,7 @@
                             <th>Uid</th>
                             <th>Username</th>
                             <th>Password</th>
-                            <th>actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     {% for user in users %}
@@ -58,17 +58,3 @@
 
 {% endblock %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% include 'footer.html.twig' %}

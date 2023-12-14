@@ -1,6 +1,6 @@
 {% include 'header.html.twig' %}
 
-
+{% block title %}Toys index{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -16,11 +16,11 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>name</th>
-                            <th>description</th>
+                            <th>Name</th>
+                            <th>Description</th>
                             <th>Price</th>
                             <th>Created</th>
-                            <th>actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     {% for toy in toys %}
@@ -59,4 +59,3 @@
     </div>
 
 {% endblock %}
-{% include 'footer.html.twig' %}

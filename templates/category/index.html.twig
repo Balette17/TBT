@@ -1,7 +1,4 @@
 {% include 'header.html.twig' %}
-
-
-
 {% block body %}
     <div class="container">
         <h2 class="text-center mt-5 mb-3">Category Manager</h2>
@@ -17,7 +14,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Category Name</th>
-                            <th>actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     {% for category in categories %}
@@ -53,4 +50,3 @@
     </div>
 
 {% endblock %}
-{% include 'footer.html.twig' %}

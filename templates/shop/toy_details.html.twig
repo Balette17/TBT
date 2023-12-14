@@ -2,20 +2,53 @@
 
 {% include 'header.html.twig' %}
 
-{% block title %}Toy Details{% endblock %}
+
 
 {% block body %}
-    <div class="container mt-4">
-        <h1>{{ toy.tname }}</h1>
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
 
+<<<<<<< HEAD
         
         <p>Description: {{ toy.tdesc }}</p>
         <img src="{{ asset('uploads/'~toy.image) }}" width="500" height="500" alt="Product Image"> <br>
         <p>Price: ${{ toy.price }}</p>
         
         {# Add more details as needed #}
+=======
+        <div class="row gy-4">
+>>>>>>> 7f703a2674b1b51512f18f105684e23672dd8f93
 
-        <a href="{{ path('shop_hp') }}" title="Back to Shop"><i class="bx bx-link"></i> Back to Shop</a>
-    </div>
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="{{ asset('uploads/'~toy.image) }}" width="500" height="500" alt="Product Image">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Name</strong>: {{ toy.tname }}</li>
+                <li><strong>Price</strong>: {{ toy.price }}</li>               
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Description</h2>
+              <p>
+                {{ toy.tdesc }}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
 {% endblock %}
-{% include 'footer.html.twig' %}
